@@ -7,6 +7,7 @@
     <pre id="bootLog" class="boot-log" aria-live="polite"></pre>
 
     <form id="authForm" class="hidden mt-4" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <div class="form-group">
         <label for="answer" class="form-label">Does the Black Moon Howl?</label>
         <input type="text" name="answer" id="answer" class="form-control" autocomplete="off" required>
