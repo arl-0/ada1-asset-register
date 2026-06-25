@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ asset.asset_number }} – ADA-1{% endblock %}
+{% block content %}
+  <div class="card">
+    <h1><span class="entry-code">{{ asset.asset_number }}</span> &mdash; {{ asset.title }}</h1>
+    <p class="entry-meta">Required clearance: Level {{ asset.clearance_level }}</p>
+    <hr>
+
+    <p style="white-space: pre-wrap;">{{ asset.content }}</p>
+
+    <hr>
+    <h2>Edit log</h2>
+    {% if asset.changelog %}
+      <ul class="changelog-list">
+        {% for log in asset.changelog %}
+          <li>{{ log.timestamp.strftime('%Y-%m-%d %H:%M') }} &mdash; {{ log.editor.username }}: {{ log.note }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted">No edits recorded.</p>
+    {% endif %}
+
+    <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary mt-4">Back to dashboard</a>
+  </div>
+{% endblock %}

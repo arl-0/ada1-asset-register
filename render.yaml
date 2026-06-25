@@ -1,0 +1,17 @@
+# render.yaml — Render Blueprint
+# Defines the web service so Render can auto-configure it from the repo.
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: ada1-asset-register
+    runtime: python
+    region: oregon          # change to 'frankfurt' if you prefer EU
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash start.sh
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true   # Render generates a secure random value
+      - key: PYTHON_VERSION
+        value: "3.11.0"

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Welcome – ADA-1{% endblock %}
+{% block content %}
+  <h1 class="page-title">ADA-1 Asset Register</h1>
+
+  <div class="card card-narrow">
+    <pre id="bootLog" class="boot-log" aria-live="polite"></pre>
+
+    <form id="authForm" class="hidden mt-4" method="POST">
+      <div class="form-group">
+        <label for="answer" class="form-label">Does the Black Moon Howl?</label>
+        <input type="text" name="answer" id="answer" class="form-control" autocomplete="off" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Continue</button>
+    </form>
+  </div>
+{% endblock %}
+{% block scripts %}
+<script>
+  const bootMessages = [
+    "Initializing ADA-1 Secure Framework...",
+    "Loading containment protocols...",
+    "Scanning memory sectors...",
+    "Calibrating access nodes...",
+    "Authorizing biometric handshake...",
+    "Decrypting classified channels...",
+    "Sync complete.",
+    ""
+  ];
+
+  const log = document.getElementById('bootLog');
+  const form = document.getElementById('authForm');
+  let index = 0;
+
+  function typeLine() {
+    if (index < bootMessages.length) {
+      log.textContent += bootMessages[index] + '\n';
+      index++;
+      setTimeout(typeLine, 800);
+    } else {
+      form.classList.remove('hidden');
+    }
+  }
+
+  window.onload = typeLine;
+</script>
+{% endblock %}

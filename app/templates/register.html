@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Register – ADA-1{% endblock %}
+{% block content %}
+  <h1 class="page-title">ADA-1 Asset Register</h1>
+
+  <div class="card card-narrow">
+    <h2>Create an account</h2>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+
+      <div class="form-group">
+        {{ form.username.label(class_="form-label") }}
+        {{ form.username(class_="form-control") }}
+        {% for error in form.username.errors %}
+          <span class="field-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="form-group">
+        {{ form.password.label(class_="form-label") }}
+        {{ form.password(class_="form-control") }}
+        {% for error in form.password.errors %}
+          <span class="field-error">{{ error }}</span>
+        {% endfor %}
+        <span class="field-hint">At least 8 characters, including a number.</span>
+      </div>
+
+      <div class="form-group">
+        {{ form.clearance.label(class_="form-label") }}
+        {{ form.clearance(class_="form-select") }}
+      </div>
+
+      {{ form.submit(class_="btn btn-primary btn-block") }}
+
+      <p class="text-center mt-4">
+        Already have an account?
+        <a href="{{ url_for('main.login') }}">Log in here</a>
+      </p>
+    </form>
+  </div>
+{% endblock %}
